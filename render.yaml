@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: medimind-backend
+    env: python
+    rootDir: medimind-ai/backend
+    buildCommand: pip install -r requirements.txt && pip install gunicorn
+    startCommand: gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
+    disk:
+      name: sqlite-db
+      mountPath: /opt/render/project/src/backend
+      sizeGB: 1
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: GROQ_API_KEY_1
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
