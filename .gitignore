@@ -1,0 +1,22 @@
+# Environments
+.env
+.env.*
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Database
+medimind.db
+*.sqlite3
+
+# Node
+node_modules/
+dist/
+.npm/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+.DS_Store

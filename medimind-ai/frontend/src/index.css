@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-base:        #f8fafc;
+    --bg-card:        #ffffff;
+    --bg-card-hover:  #f1f5f9;
+    --bg-input:       #ffffff;
+    --border:         #e2e8f0;
+    --border-strong:  #cbd5e1;
+    --text-primary:   #0f172a;
+    --text-secondary: #475569;
+    --text-muted:     #94a3b8;
+    --shadow:         0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md:      0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-lg:      0 10px 30px rgba(0,0,0,0.10);
+  }
+
+  .dark {
+    --bg-base:        #0d1117;
+    --bg-card:        #161b22;
+    --bg-card-hover:  #1c2333;
+    --bg-input:       #0d1117;
+    --border:         #21262d;
+    --border-strong:  #30363d;
+    --text-primary:   #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted:     #484f58;
+    --shadow:         0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md:      0 4px 12px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.3);
+    --shadow-lg:      0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  ::-webkit-scrollbar        { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { @apply bg-brand-400/40 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-brand-500/60; }
+}
+
+@layer components {
+  .card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    @apply rounded-2xl;
+  }
+
+  .card-hover {
+    @apply card transition-all duration-200;
+  }
+  .card-hover:hover {
+    background-color: var(--bg-card-hover);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .input-base {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    @apply rounded-xl px-4 py-2.5 text-sm w-full outline-none
+           focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500
+           transition-all duration-150 placeholder:text-[var(--text-muted)];
+  }
+
+  .btn-primary {
+    @apply bg-brand-500 hover:bg-brand-600 active:bg-brand-700
+           text-white font-medium rounded-xl px-5 py-2.5
+           transition-all duration-150 shadow-sm hover:shadow-md
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    @apply font-medium rounded-xl px-5 py-2.5 hover:bg-[var(--bg-card-hover)]
+           transition-all duration-150;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full;
+  }
+  .badge-critical { @apply badge bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400; }
+  .badge-warning  { @apply badge bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400; }
+  .badge-success  { @apply badge bg-brand-100 text-brand-700 dark:bg-brand-900/30 dark:text-brand-400; }
+  .badge-info     { @apply badge bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400; }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    @apply text-xl font-bold tracking-tight;
+    color: var(--text-primary);
+  }
+
+  .text-primary   { color: var(--text-primary); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-muted     { color: var(--text-muted); }
+}
+
+/* AI typing animation */
+@keyframes blink { 0%,100% { opacity:1 } 50% { opacity:0 } }
+.cursor-blink { animation: blink 1s step-end infinite; }
+
+/* Gradient mesh background for login */
+.mesh-bg {
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(20,179,112,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 70%, rgba(20,179,112,0.10) 0%, transparent 60%),
+    var(--bg-base);
+}
